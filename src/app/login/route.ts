@@ -1,16 +1,10 @@
 import jwt from "jsonwebtoken";
-import { headers } from "next/headers";
 
 const user = { username: "admin", password: "admin123" };
 
 export async function POST(request: Request) {
-  console.log("Request", request);
-
   try {
-    const formData = await request.formData();
-
-    const username = formData.get("username");
-    const password = formData.get("password");
+    const { username, password } = await request.json();
 
     if (username !== user.username || password !== user.password) {
       return Response.json({ error: "Invalid credentials" }, { status: 401 });
@@ -27,7 +21,5 @@ export async function POST(request: Request) {
     if (error instanceof SyntaxError) {
       return Response.json({ error: "Invalid input" }, { status: 400 });
     }
-
-    return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }
