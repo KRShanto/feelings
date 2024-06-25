@@ -4,6 +4,8 @@ import { headers } from "next/headers";
 const user = { username: "admin", password: "admin123" };
 
 export async function POST(request: Request) {
+  console.log("Request", request);
+
   try {
     const headersList = headers();
 
