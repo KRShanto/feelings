@@ -1,10 +1,14 @@
 import jwt from "jsonwebtoken";
+import { headers } from "next/headers";
 
 const user = { username: "admin", password: "admin123" };
 
 export async function POST(request: Request) {
   try {
-    const { username, password } = await request.json();
+    const headersList = headers();
+
+    const username = headersList.get("username");
+    const password = headersList.get("password");
 
     if (username !== user.username || password !== user.password) {
       return Response.json({ error: "Invalid credentials" }, { status: 401 });
