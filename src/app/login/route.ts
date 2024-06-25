@@ -27,5 +27,7 @@ export async function POST(request: Request) {
     if (error instanceof SyntaxError) {
       return Response.json({ error: "Invalid input" }, { status: 400 });
     }
+
+    return Response.json({ error: "Internal server error" }, { status: 500 });
   }
 }
