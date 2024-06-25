@@ -2,9 +2,9 @@ export async function POST(request: Request) {
   console.log("Request: ", request);
 
   try {
-    const { from, feelings } = await request.json();
+    const { from, feeling } = await request.json();
 
-    console.log("New feelings from", from, feelings);
+    console.log("New feelings from", from, feeling);
 
     return Response.json({ success: true });
   } catch (error: any) {

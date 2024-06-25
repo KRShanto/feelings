@@ -12,10 +12,7 @@ export async function POST(request: Request) {
 
     const token = jwt.sign({ username }, "secret123", { expiresIn: "1h" });
 
-    return Response.json(
-      { token },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
+    return Response.json({ token }, { headers: { token: `Bearer ${token}` } });
   } catch (error: any) {
     // check if this is json parse error
     if (error instanceof SyntaxError) {
