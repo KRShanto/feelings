@@ -7,10 +7,10 @@ export async function POST(request: Request) {
   console.log("Request", request);
 
   try {
-    const headersList = headers();
+    const formData = await request.formData();
 
-    const username = headersList.get("username");
-    const password = headersList.get("password");
+    const username = formData.get("username");
+    const password = formData.get("password");
 
     if (username !== user.username || password !== user.password) {
       return Response.json({ error: "Invalid credentials" }, { status: 401 });
